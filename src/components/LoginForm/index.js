@@ -26,10 +26,8 @@ class LoginForm extends Component {
     onLoginButtonPress() {
         this.setState({ error: '', busy: true });
         const { email, password } = this.state;
-        
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
-            .then(() => {
-                return firebase.auth().signInWithEmailAndPassword(email, password)
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(() => {
                     this.onLoginSuccess();
                 })
@@ -42,7 +40,6 @@ class LoginForm extends Component {
                             this.onLoginFail(error);
                         });
                 });
-            });
     }
 
     onLoginSuccess = () => {
